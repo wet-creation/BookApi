@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ua.com.bookapi.core.navigation.graphs.MainGraph
 import ua.com.bookapi.features.auth.presentation.AuthScreen
-import ua.com.bookapi.features.books.list.CategoryListRoot
+import ua.com.bookapi.features.books.presentation.list.CategoryListRoot
 
 
 @Composable

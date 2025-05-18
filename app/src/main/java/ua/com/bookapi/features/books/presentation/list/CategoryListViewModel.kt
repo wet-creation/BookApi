@@ -1,4 +1,4 @@
-package ua.com.bookapi.features.books.list
+package ua.com.bookapi.features.books.presentation.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

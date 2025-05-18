@@ -1,4 +1,4 @@
-package ua.com.bookapi.features.books.list
+package ua.com.bookapi.features.books.presentation.list
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

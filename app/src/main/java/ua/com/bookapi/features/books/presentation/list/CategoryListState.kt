@@ -1,4 +1,4 @@
-package ua.com.bookapi.features.books.list
+package ua.com.bookapi.features.books.presentation.list
 
 data class CategoryListState(
     val paramOne: String = "default",

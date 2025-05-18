@@ -2,4 +2,16 @@
     <string name="app_name">BookApi</string>
     <string name="login_with_google">Login with Google</string>
     <string name="google_logo_description">Google logo</string>
+    <string name="the_conflict_occurred">Conflict occurred</string>
+    <string name="not_found">Nothing found</string>
+    <string name="bad_request">Client bad request</string>
+    <string name="unknown_error">Unexpected error</string>
+    <string name="error_serialization">Serialization error</string>
+    <string name="conflict_error">Data cannot be saved\ndue to a conflict</string>
+    <string name="server_error">Cannot connect to server</string>
+    <string name="the_request_timed_out">The request was too long</string>
+    <string name="youve_hit_your_rate_limit">Too many requests</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="please_login">Please login to access this page/action</string>
+    <string name="file_too_large">File too large</string>
 </resources>
