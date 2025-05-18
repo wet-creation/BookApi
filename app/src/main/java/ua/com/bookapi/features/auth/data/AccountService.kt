@@ -4,7 +4,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface AccountService {
 
-    fun hasUser(): Boolean
-    suspend fun linkAccountWithGoogle(idToken: String)
+    val hasUser: Flow<Boolean>
     suspend fun signInWithGoogle(idToken: String)
 }

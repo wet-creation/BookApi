@@ -1,4 +1,4 @@
-package ua.com.bookapi.ui.theme
+package ua.com.bookapi.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

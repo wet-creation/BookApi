@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import ua.com.bookapi.R
 import ua.com.bookapi.core.Config
-import ua.com.bookapi.ui.theme.Purple40
+import ua.com.bookapi.core.ui.theme.Purple40
 
 @Composable
 fun AuthScreen(modifier: Modifier = Modifier) {
@@ -95,8 +95,8 @@ private suspend fun launchCredManButtonUI(
         )
 
         onRequestResult(result.credential)
-    } catch (e: NoCredentialException) {
+    } catch (_: NoCredentialException) {
 
-    } catch (e: GetCredentialException) {
+    } catch (_: GetCredentialException) {
     }
 }
