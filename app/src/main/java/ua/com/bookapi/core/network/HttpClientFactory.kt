@@ -1,4 +1,4 @@
-package ua.com.bookapi.core.utils.network
+package ua.com.bookapi.core.network
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp

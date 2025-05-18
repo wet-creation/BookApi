@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.ApplicationBuildType
 import java.util.Properties
 
 plugins {
@@ -17,7 +18,14 @@ if (localPropertiesFile.exists()) {
     localProperties.load(localPropertiesFile.inputStream())
 }
 
+
 val webClientId = localProperties.getProperty("WEB_CLIENT_ID") ?: ""
+val token = localProperties.getProperty("BOOK_API_TOKEN") ?: ""
+
+fun ApplicationBuildType.initLocalProperties() {
+    buildConfigField("String", "WEB_CLIENT_ID", "\"$webClientId\"")
+    buildConfigField("String", "BOOK_API_TOKEN", "\"$token\"")
+}
 android {
     namespace = "ua.com.bookapi"
     compileSdk = 35
@@ -31,11 +39,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    android.buildFeatures.buildConfig =  true
+    android.buildFeatures.buildConfig = true
     buildTypes {
 
         release {
-            buildConfigField("String", "WEB_CLIENT_ID", "\"$webClientId\"")
+            initLocalProperties()
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -43,7 +51,8 @@ android {
             )
         }
         debug {
-            buildConfigField("String", "WEB_CLIENT_ID", "\"$webClientId\"")
+            initLocalProperties()
+
         }
     }
     compileOptions {

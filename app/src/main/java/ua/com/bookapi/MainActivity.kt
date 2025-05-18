@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
 
     private fun initConfig() {
         Config.webClientId = BuildConfig.WEB_CLIENT_ID
+        Config.token = BuildConfig.BOOK_API_TOKEN
     }
 }
 
