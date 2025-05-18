@@ -7,41 +7,30 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import org.koin.compose.KoinContext
+import ua.com.bookapi.core.Config
+import ua.com.bookapi.features.auth.presentation.AuthScreen
 import ua.com.bookapi.ui.theme.BookApiTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        initConfig()
         setContent {
-            BookApiTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            KoinContext {
+                BookApiTheme {
+                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                        AuthScreen(modifier = Modifier.padding(innerPadding))
+                    }
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BookApiTheme {
-        Greeting("Android")
+    private fun initConfig() {
+        Config.webClientId = BuildConfig.WEB_CLIENT_ID
     }
 }
+

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BookApi</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="google_logo_description">Google logo</string>
 </resources>
