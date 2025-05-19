@@ -6,8 +6,6 @@ import ua.com.bookapi.features.books.domain.models.ImageUrl
 
 @Serializable
 data class BooksDto(
-    @SerialName("book_uri")
-    val id: String,
     val title: String = "",
     val description: String = "",
     val author: String = "",

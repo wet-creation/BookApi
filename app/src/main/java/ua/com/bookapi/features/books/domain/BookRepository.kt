@@ -8,6 +8,6 @@ import ua.com.bookapi.features.books.domain.models.Category
 
 interface BookRepository {
     suspend fun fetchAll(): EmptyDataResult<DataError>
-    suspend fun getCategories(): Flow<List<Category>>
-    suspend fun getBooks(categoryId: Int): Flow<List<Book>>
+     fun getCategories(): Flow<List<Category>>
+     fun getBooks(categoryId: Int): Flow<List<Book>>
 }

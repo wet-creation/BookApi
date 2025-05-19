@@ -6,8 +6,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import ua.com.bookapi.core.utils.asErrorUiText
+import ua.com.bookapi.core.utils.emptyUiText
+import ua.com.bookapi.core.utils.responses.Results
+import ua.com.bookapi.features.books.domain.BookRepository
 
-class CategoryListViewModel : ViewModel() {
+class CategoryListViewModel(
+    private val repository: BookRepository
+) : ViewModel() {
 
     private var hasLoadedInitialData = false
 
@@ -15,7 +23,7 @@ class CategoryListViewModel : ViewModel() {
     val state = _state
         .onStart {
             if (!hasLoadedInitialData) {
-                /** Load initial data here **/
+                init()
                 hasLoadedInitialData = true
             }
         }
@@ -25,10 +33,42 @@ class CategoryListViewModel : ViewModel() {
             initialValue = CategoryListState()
         )
 
-    fun onAction(action: CategoryListAction) {
+     fun onAction(action: CategoryListAction) {
         when (action) {
-            else -> TODO("Handle actions")
+            CategoryListAction.DismissDialog -> _state.update { it.copy(error = emptyUiText) }
+            else -> Unit
         }
     }
 
+    private fun init() {
+        _state.update { it.copy(isLoading = true) }
+        viewModelScope.launch {
+            when (val res = repository.fetchAll()) {
+                is Results.Error -> {
+                    _state.update { it.copy(error = res.asErrorUiText()) }
+
+                }
+
+                is Results.Success -> {
+                    _state.update { it.copy(error = emptyUiText) }
+                }
+
+            }
+            getAllCategories()
+        }
+
+    }
+
+    private fun getAllCategories() {
+        viewModelScope.launch {
+            repository.getCategories().collect { res ->
+                _state.update {
+                    it.copy(
+                        isLoading = false,
+                        categories = res
+                    )
+                }
+            }
+        }
+    }
 }
