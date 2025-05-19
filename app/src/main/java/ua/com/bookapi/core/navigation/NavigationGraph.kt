@@ -25,7 +25,7 @@ import ua.com.bookapi.features.books.presentation.list.CategoryListRoot
 @Composable
 fun NavigationRoot(
     navController: NavHostController,
-    startDestination: Any = MainGraph.Auth,
+    startDestination: Any,
     innerPadding: PaddingValues
 ) {
     NavHost(

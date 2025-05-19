@@ -18,19 +18,18 @@ import ua.com.bookapi.core.ui.theme.BookApiTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        initConfig()
         val viewModel by inject<MainViewModel>()
         installSplashScreen().apply {
             this.setKeepOnScreenCondition { viewModel.state == null }
         }
-
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        initConfig()
         setContent {
             val navController = rememberNavController()
-            val start = if (viewModel.state == true) {
-                MainGraph.Categories
-            } else MainGraph.Auth
+            val start = if (viewModel.state == false) {
+                MainGraph.Auth
+            } else MainGraph.Categories
             KoinContext {
                 BookApiTheme {
                     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
