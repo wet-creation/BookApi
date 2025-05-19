@@ -1,5 +1,6 @@
 package ua.com.bookapi.core.navigation
 
+import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,6 +27,7 @@ import ua.com.bookapi.features.books.presentation.list.CategoryListRoot
 import kotlin.reflect.KClass
 
 
+@SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun NavigationRoot(
     navController: NavHostController,
@@ -85,6 +87,7 @@ fun NavigationRoot(
                     )
 
                     webView.settings.useWideViewPort = true
+                    webView.settings.javaScriptEnabled = true
                     webView.settings.loadWithOverviewMode = true
                 },
             )

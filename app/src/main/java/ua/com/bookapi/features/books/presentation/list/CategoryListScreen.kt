@@ -26,6 +26,7 @@ import org.koin.androidx.compose.koinViewModel
 import ua.com.bookapi.R
 import ua.com.bookapi.core.ui.theme.BookApiTheme
 import ua.com.bookapi.core.utils.emptyUiText
+import ua.com.bookapi.features.books.presentation.components.TitleText
 
 @Composable
 fun CategoryListRoot(
@@ -104,9 +105,14 @@ fun CategoryListScreen(
                             .padding(10.dp)
 
                     ) {
-                        Text(it.name)
-                        Text(it.publishedDate)
-
+                        TitleText(
+                            title = stringResource(R.string.name_text),
+                            text = it.name
+                        )
+                        TitleText(
+                            title = stringResource(R.string.publishing_date),
+                            text = it.publishedDate
+                        )
                     }
                 }
             }

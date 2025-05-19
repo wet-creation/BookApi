@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -30,6 +31,7 @@ import coil.compose.rememberAsyncImagePainter
 import ua.com.bookapi.R
 import ua.com.bookapi.core.ui.theme.BookApiTheme
 import ua.com.bookapi.core.utils.emptyUiText
+import ua.com.bookapi.features.books.presentation.components.TitleText
 
 @Composable
 fun CategoryDetailRoot(
@@ -109,18 +111,24 @@ fun CategoryDetailScreen(
                             .padding(10.dp)
 
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text(it.rank.toString())
                             Image(
                                 contentDescription = stringResource(R.string.book_image, it.name),
                                 painter = rememberAsyncImagePainter(it.bookImage),
-                                modifier = Modifier.size(60.dp, 80.dp)
+                                modifier = Modifier.size(100.dp, 125.dp)
                             )
                             Column {
-                                Text(it.name)
-                                Text(it.description)
-                                Text(it.author)
-                                Text(it.publisher)
+                                Text(it.name, color = MaterialTheme.colorScheme.primary)
+                                Text(it.description, color = MaterialTheme.colorScheme.tertiary)
+                                TitleText(
+                                    title = stringResource(R.string.author),
+                                    text = it.author
+                                )
+                                TitleText(
+                                    title = stringResource(R.string.publisher),
+                                    text = it.publisher
+                                )
                             }
                         }
 
@@ -130,6 +138,7 @@ fun CategoryDetailScreen(
             }
         }
 }
+
 
 @Preview
 @Composable

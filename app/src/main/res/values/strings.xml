@@ -19,4 +19,8 @@
     <string name="book_image">Image of book 1$s</string>
     <string name="category_text">Category</string>
     <string name="navigate_back">Navigate back</string>
+    <string name="publishing_date">Publishing date</string>
+    <string name="name_text">Name</string>
+    <string name="author">Author</string>
+    <string name="publisher">Publisher</string>
 </resources>
