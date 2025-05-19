@@ -18,10 +18,6 @@ sealed interface DataError: Error {
         CLIENT_EXCEPTION,
         FORBIDDEN
     }
-    enum class Local: DataError {
-        FULL_STORAGE
-    }
-
 }
 
 
