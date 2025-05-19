@@ -14,6 +14,7 @@ import ua.com.bookapi.core.Config.baseUrl
 import ua.com.bookapi.core.utils.responses.DataError
 import ua.com.bookapi.core.utils.responses.Results
 import java.net.ConnectException
+import java.net.UnknownHostException
 
 fun constructRoute(route: String): String {
     return when {
@@ -61,6 +62,10 @@ suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Results<T,
         e.printStackTrace()
         return Results.Error(DataError.Network.NO_INTERNET)
     } catch (e: ConnectException) {
+        e.printStackTrace()
+        return Results.Error(DataError.Network.NO_INTERNET)
+    }
+    catch (e: UnknownHostException) {
         e.printStackTrace()
         return Results.Error(DataError.Network.NO_INTERNET)
     } catch (e: SerializationException) {
