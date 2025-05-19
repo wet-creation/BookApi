@@ -34,7 +34,8 @@ import ua.com.bookapi.core.utils.emptyUiText
 @Composable
 fun CategoryDetailRoot(
     innerPadding: PaddingValues,
-    viewModel: CategoryDetailViewModel = viewModel()
+    viewModel: CategoryDetailViewModel = viewModel(),
+    navigateToShop: (String) -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -43,6 +44,10 @@ fun CategoryDetailRoot(
         state = state,
         onAction = {
             viewModel.onAction(it)
+            when (it) {
+                is CategoryDetailAction.NavigateToBrowser -> navigateToShop(it.url)
+                else -> Unit
+            }
         }
     )
 }
