@@ -1,6 +1,7 @@
 package ua.com.bookapi.features.auth.presentation
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -96,7 +97,9 @@ private suspend fun launchCredManButtonUI(
 
         onRequestResult(result.credential)
     } catch (_: NoCredentialException) {
-
+        Toast.makeText(context, context.getString(R.string.no_accounts_error), Toast.LENGTH_SHORT).show()
     } catch (_: GetCredentialException) {
+        Toast.makeText(context, context.getString(R.string.no_accounts_error), Toast.LENGTH_SHORT).show()
+
     }
 }
