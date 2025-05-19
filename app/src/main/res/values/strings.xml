@@ -17,4 +17,6 @@
     <string name="error_title">Error</string>
     <string name="confirm">Confirm</string>
     <string name="book_image">Image of book 1$s</string>
+    <string name="category_text">Category</string>
+    <string name="navigate_back">Navigate back</string>
 </resources>

@@ -9,7 +9,7 @@ data object MainGraph {
     @Serializable
     data object Categories
     @Serializable
-    data class Books(val id: Int)
+    data class Books(val id: Int, val name: String)
     @Serializable
-    data class WebView(val url: String)
+    data class WebView(val url: String, val name: String)
 }

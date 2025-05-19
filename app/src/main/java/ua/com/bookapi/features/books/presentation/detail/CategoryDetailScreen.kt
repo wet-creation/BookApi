@@ -35,7 +35,7 @@ import ua.com.bookapi.core.utils.emptyUiText
 fun CategoryDetailRoot(
     innerPadding: PaddingValues,
     viewModel: CategoryDetailViewModel = viewModel(),
-    navigateToShop: (String) -> Unit
+    navigateToShop: (String, String) -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -45,7 +45,7 @@ fun CategoryDetailRoot(
         onAction = {
             viewModel.onAction(it)
             when (it) {
-                is CategoryDetailAction.NavigateToBrowser -> navigateToShop(it.url)
+                is CategoryDetailAction.NavigateToBrowser -> navigateToShop(it.url, it.name)
                 else -> Unit
             }
         }
@@ -100,7 +100,7 @@ fun CategoryDetailScreen(
                         .padding(20.dp)
                         .fillMaxWidth()
                         .clickable {
-                            onAction(CategoryDetailAction.NavigateToBrowser(it.productUrl))
+                            onAction(CategoryDetailAction.NavigateToBrowser(it.productUrl, it.name))
                         }
                 ) {
 

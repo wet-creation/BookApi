@@ -31,7 +31,7 @@ import ua.com.bookapi.core.utils.emptyUiText
 fun CategoryListRoot(
     innerPadding: PaddingValues,
     viewModel: CategoryListViewModel = koinViewModel(),
-    navigateToBooks: (Int) -> Unit
+    navigateToBooks: (Int, String) -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -41,7 +41,7 @@ fun CategoryListRoot(
         onAction = {
             viewModel.onAction(it)
             when (it) {
-                is CategoryListAction.NavigateToBooks -> navigateToBooks(it.categoryId)
+                is CategoryListAction.NavigateToBooks -> navigateToBooks(it.categoryId, it.categoryName)
                 else -> Unit
             }
         }
@@ -96,7 +96,7 @@ fun CategoryListScreen(
                         .padding(20.dp)
                         .fillMaxWidth()
                         .clickable {
-                            onAction(CategoryListAction.NavigateToBooks(it.id))
+                            onAction(CategoryListAction.NavigateToBooks(it.id, it.name))
                         }
                 ) {
                     Column(
