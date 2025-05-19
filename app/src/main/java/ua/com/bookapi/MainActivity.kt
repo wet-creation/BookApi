@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -77,7 +78,7 @@ class MainActivity : ComponentActivity() {
                                                 )
                                             }
                                     },
-                                    title = { Text(it) }
+                                    title = { Text(it, overflow = TextOverflow.Ellipsis, maxLines = 1) }
                                 )
                             }
                         }) { innerPadding ->
