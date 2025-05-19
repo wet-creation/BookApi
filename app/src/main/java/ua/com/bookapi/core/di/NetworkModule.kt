@@ -1,4 +1,4 @@
-package ua.com.bookapi.core.network.di
+package ua.com.bookapi.core.di
 
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
