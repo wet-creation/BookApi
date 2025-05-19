@@ -21,33 +21,33 @@ A simple two-screen Android app to explore book categories and bestsellers from 
 
 ```
 bookapi/
-├── core/                  # Shared core modules
-│   ├── database/          # Room DB setup and entities
-│   ├── di/                # DI bindings (common)
-│   ├── navigation/        # App navigation (NavGraph)
-│   ├── network/           # Retrofit, interceptors, DTO
-│   ├── ui/                # Shared Compose components
-│   ├── utils/             # Helpers and constants
-│   └── Config.kt          # Global app configuration
+├── core/                  
+│   ├── database/         
+│   ├── di/               
+│   ├── navigation/        
+│   ├── network/           
+│   ├── ui/                
+│   ├── utils/           
+│   └── Config.kt          
 │
 ├── di/
-│   └── MainModule.kt      # DI initialization
+│   └── MainModule.kt      
 │
-├── features/              # Modular features (Clean Architecture)
-│   ├── auth/              # Google Auth feature
-│   │   ├── data/          # Auth-related logic and models
-│   │   ├── di/            # Auth-specific DI
-│   │   └── presentation/  # UI and ViewModels for login/splash
+├── features/             
+│   ├── auth/             
+│   │   ├── data/         
+│   │   ├── di/            
+│   │   └── presentation/ 
 │   │
-│   └── books/             # Book browsing feature
-│       ├── data/          # Book DTOs, repository impl, local/remote
-│       ├── di/            # Book feature DI
-│       ├── domain/        # Models and use cases
-│       └── presentation/  # UI and ViewModels (categories, books)
+│   └── books/            
+│       ├── data/          
+│       ├── di/            
+│       ├── domain/       
+│       └── presentation/  
 │
-├── BookApiApp.kt          # Application class
-├── MainActivity.kt        # Entry point of app
-└── MainViewModel.kt       # Central app ViewModel
+├── BookApiApp.kt         
+├── MainActivity.kt       
+└── MainViewModel.kt       
 ```
 
 ---
