@@ -24,4 +24,5 @@
     <string name="no_accounts_error">No Google accounts found on this device</string>
     <string name="author">Author</string>
     <string name="publisher">Publisher</string>
+    <string name="buy">Buy book</string>
 </resources>

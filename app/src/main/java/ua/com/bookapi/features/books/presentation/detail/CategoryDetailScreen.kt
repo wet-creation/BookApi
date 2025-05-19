@@ -1,7 +1,6 @@
 package ua.com.bookapi.features.books.presentation.detail
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -102,9 +102,6 @@ fun CategoryDetailScreen(
                     modifier = Modifier
                         .padding(20.dp)
                         .fillMaxWidth()
-                        .clickable {
-                            onAction(CategoryDetailAction.NavigateToBrowser(it.productUrl, it.name))
-                        }
                 ) {
 
                     Column(
@@ -126,7 +123,7 @@ fun CategoryDetailScreen(
                                 ),
                                 modifier = Modifier.size(100.dp, 125.dp)
                             )
-                            Column {
+                            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                                 Text(it.name, color = MaterialTheme.colorScheme.primary)
                                 Text(it.description, color = MaterialTheme.colorScheme.tertiary)
                                 TitleText(
@@ -137,6 +134,12 @@ fun CategoryDetailScreen(
                                     title = stringResource(R.string.publisher),
                                     text = it.publisher
                                 )
+                                Button(onClick = {
+                                    onAction(CategoryDetailAction.NavigateToBrowser(it.productUrl, it.name))
+
+                                }) {
+                                    Text(stringResource(R.string.buy))
+                                }
                             }
                         }
 
