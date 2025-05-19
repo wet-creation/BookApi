@@ -90,6 +90,8 @@ dependencies {
     debugImplementation(libs.googleid)
 
     implementation(libs.coil.compose)
+    implementation (libs.compose.webview)
+
 
     //Room
     implementation(libs.androidx.room.runtime)

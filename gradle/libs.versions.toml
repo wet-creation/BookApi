@@ -19,6 +19,7 @@ kotlinSerialization = "1.7.3"
 androidxNavigation = "2.9.0"
 room = "2.7.1"
 coilCompose = "2.7.0"
+composeWebview = "0.33.6"
 
 [libraries]
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
@@ -26,6 +27,9 @@ firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose"}
+
+compose-webview = { module = "io.github.kevinnzou:compose-webview", version.ref = "composeWebview" }
+
 
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }

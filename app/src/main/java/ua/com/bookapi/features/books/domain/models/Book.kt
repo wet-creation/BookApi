@@ -6,9 +6,9 @@ data class Book(
     val name: String = "",
     val description: String = "",
     val author: String = "",
+    val publisher: String = "",
     val categoryId: Int,
     val bookImage: ImageUrl = null,
     val productUrl: String = "",
-    val rank: Int = -1,
-    val publisher: String = ""
+    val rank: Int = -1
 )

@@ -1,12 +1,15 @@
-package ua.com.bookapi.features.books.presentation.list
+package ua.com.bookapi.features.books.presentation.detail
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
@@ -22,37 +25,33 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.koin.androidx.compose.koinViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.rememberAsyncImagePainter
 import ua.com.bookapi.R
 import ua.com.bookapi.core.ui.theme.BookApiTheme
 import ua.com.bookapi.core.utils.emptyUiText
 
 @Composable
-fun CategoryListRoot(
+fun CategoryDetailRoot(
     innerPadding: PaddingValues,
-    viewModel: CategoryListViewModel = koinViewModel(),
-    navigateToBooks: (Int) -> Unit
+    viewModel: CategoryDetailViewModel = viewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    CategoryListScreen(
+    CategoryDetailScreen(
         innerPadding = innerPadding,
         state = state,
         onAction = {
             viewModel.onAction(it)
-            when (it) {
-                is CategoryListAction.NavigateToBooks -> navigateToBooks(it.categoryId)
-                else -> Unit
-            }
         }
     )
 }
 
 @Composable
-fun CategoryListScreen(
+fun CategoryDetailScreen(
     innerPadding: PaddingValues,
-    state: CategoryListState,
-    onAction: (CategoryListAction) -> Unit,
+    state: CategoryDetailState,
+    onAction: (CategoryDetailAction) -> Unit,
 ) {
     if (state.error != emptyUiText)
         AlertDialog(
@@ -63,12 +62,12 @@ fun CategoryListScreen(
                 Text(text = state.error.asString())
             },
             onDismissRequest = {
-                onAction(CategoryListAction.DismissDialog)
+                onAction(CategoryDetailAction.DismissDialog)
             },
             confirmButton = {
                 TextButton(
                     onClick = {
-                        onAction(CategoryListAction.DismissDialog)
+                        onAction(CategoryDetailAction.DismissDialog)
                     }
                 ) {
                     Text(stringResource(R.string.confirm))
@@ -90,22 +89,36 @@ fun CategoryListScreen(
                 .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(state.categories) {
+            items(state.books) {
                 Card(
                     modifier = Modifier
                         .padding(20.dp)
                         .fillMaxWidth()
                         .clickable {
-                            onAction(CategoryListAction.NavigateToBooks(it.id))
+                            onAction(CategoryDetailAction.NavigateToBrowser(it.productUrl))
                         }
                 ) {
+
                     Column(
                         modifier = Modifier
                             .padding(10.dp)
 
                     ) {
-                        Text(it.name)
-                        Text(it.publishedDate)
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(it.rank.toString())
+                            Image(
+                                contentDescription = stringResource(R.string.book_image, it.name),
+                                painter = rememberAsyncImagePainter(it.bookImage),
+                                modifier = Modifier.size(60.dp, 80.dp)
+                            )
+                            Column {
+                                Text(it.name)
+                                Text(it.description)
+                                Text(it.author)
+                                Text(it.publisher)
+                            }
+                        }
+
 
                     }
                 }
@@ -117,10 +130,10 @@ fun CategoryListScreen(
 @Composable
 private fun Preview() {
     BookApiTheme {
-        CategoryListScreen(
-            innerPadding = PaddingValues(),
-            state = CategoryListState(),
-            onAction = {}
+        CategoryDetailScreen(
+            state = CategoryDetailState(),
+            onAction = {},
+            innerPadding = PaddingValues()
         )
     }
 }

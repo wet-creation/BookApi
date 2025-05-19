@@ -14,4 +14,7 @@
     <string name="no_internet">No internet connection</string>
     <string name="please_login">Please login to access this page/action</string>
     <string name="file_too_large">File too large</string>
+    <string name="error_title">Error</string>
+    <string name="confirm">Confirm</string>
+    <string name="book_image">Image of book 1$s</string>
 </resources>
